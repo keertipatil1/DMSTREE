@@ -881,73 +881,12 @@ const n = parseInt(prompt("Enter the value of n:", ""));
 // Prompt the user for the depth
 const depth = parseInt(prompt("Enter the depth:", ""));
 
-// // Initialize Three.js scene
-// //const scene = new THREE.Scene();
-// //const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-// //const renderer = new THREE.WebGLRenderer();
-// //renderer.setSize(window.innerWidth, window.innerHeight);
-// //document.body.appendChild(renderer.domElement);
-
-// // Initialize Three.js scene
-// const scene = new THREE.Scene();
-// const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-// const renderer = new THREE.WebGLRenderer({ alpha: true });  // Enable transparency
-// renderer.setClearColor(0x000000, 0);  // Set clear color to transparent
-// renderer.setSize(window.innerWidth, window.innerHeight);
-// document.body.appendChild(renderer.domElement);
-
-
-// // Function to evaluate f(n) and g(n)
-// function evaluateExpression(expr, n) {
-//     return Function('n', `return ${expr}`)(n);
-// }
-
-// // Function to create a 3D sphere for each node
-// function createNodeSphere(value, position) {
-//     const geometry = new THREE.SphereGeometry(1, 32, 32);  // Node size retained
-//     const material = new THREE.MeshBasicMaterial({ color: 0xffffff });  // Node color changed to white
-//     const sphere = new THREE.Mesh(geometry, material);
-//     sphere.position.set(position.x, position.y, position.z);
-//     scene.add(sphere);
-// }
-
-// // Function to generate the tree
-// function generateTree(position, level, n, a, b, fn, gn, depth) {
-//     if (level > depth || n < 1) return;
-
-//     const nodeValue = calculateRecurrence(n, level, a, b, fn, gn, depth);
-
-//     // Create and render the node (3D sphere) at the position with the calculated value
-//     createNodeSphere(nodeValue, position);
-
-//     // Adjust position and generate child nodes recursively
-//     const offset = 2 / (level + 1); // Adjust offset for spacing
-//     generateTree({ x: position.x - offset, y: position.y - 1, z: position.z }, level + 1, Math.floor(n / b), a, b, fn, gn, depth);
-//     generateTree({ x: position.x + offset, y: position.y - 1, z: position.z }, level + 1, Math.floor(n / b), a, b, fn, gn, depth);
-// }
-
-// // Function to calculate T(n) recursively
-// function calculateRecurrence(n, level, a, b, fn, gn, depth) {
-//     if (level >= depth || n < 1) return 0;
-
-//     const fnValue = evaluateExpression(fn, n);
-//     const gnValue = evaluateExpression(gn, n);
-
-//     return a * calculateRecurrence(Math.floor(n / b), level + 1, a, b, fn, gn, depth) + fnValue + gnValue;
-// }
-
-// // Generate the tree from the root node
-// generateTree({ x: 0, y: 0, z: 0 }, 0, n, a, b, fn, gn, depth);
-
-// // Set camera position
-// camera.position.z = 10;
-
-// // Render function
-// function animate() {
-//     requestAnimationFrame(animate);
-//     renderer.render(scene, camera);
-// }
-// animate();
+// Initialize Three.js scene
+//const scene = new THREE.Scene();
+//const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+//const renderer = new THREE.WebGLRenderer();
+//renderer.setSize(window.innerWidth, window.innerHeight);
+//document.body.appendChild(renderer.domElement);
 
 // Initialize Three.js scene
 const scene = new THREE.Scene();
@@ -957,6 +896,7 @@ renderer.setClearColor(0x000000, 0);  // Set clear color to transparent
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+
 // Function to evaluate f(n) and g(n)
 function evaluateExpression(expr, n) {
     return Function('n', `return ${expr}`)(n);
@@ -964,41 +904,26 @@ function evaluateExpression(expr, n) {
 
 // Function to create a 3D sphere for each node
 function createNodeSphere(value, position) {
-    const geometry = new THREE.SphereGeometry(0.8, 32, 32);  // Adjusted size
-    const material = new THREE.MeshBasicMaterial({ color: 0xffffff });  // White color for nodes
+    const geometry = new THREE.SphereGeometry(1, 32, 32);  // Node size retained
+    const material = new THREE.MeshBasicMaterial({ color: 0xffffff });  // Node color changed to white
     const sphere = new THREE.Mesh(geometry, material);
     sphere.position.set(position.x, position.y, position.z);
     scene.add(sphere);
-    return sphere;
-}
-
-// Function to create edges (lines) between nodes
-function createEdge(node1, node2) {
-    const material = new THREE.LineBasicMaterial({ color: 0x888888 });  // Grey color for edges
-    const points = [];
-    points.push(new THREE.Vector3(node1.position.x, node1.position.y, node1.position.z));
-    points.push(new THREE.Vector3(node2.position.x, node2.position.y, node2.position.z));
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const line = new THREE.Line(geometry, material);
-    scene.add(line);
 }
 
 // Function to generate the tree
-function generateTree(position, level, n, a, b, fn, gn, depth, parentNode = null) {
+function generateTree(position, level, n, a, b, fn, gn, depth) {
     if (level > depth || n < 1) return;
 
     const nodeValue = calculateRecurrence(n, level, a, b, fn, gn, depth);
-    const node = createNodeSphere(nodeValue, position);  // Create the node sphere
 
-    // If there's a parent node, create an edge connecting to this node
-    if (parentNode) {
-        createEdge(parentNode, node);
-    }
+    // Create and render the node (3D sphere) at the position with the calculated value
+    createNodeSphere(nodeValue, position);
 
     // Adjust position and generate child nodes recursively
-    const offset = 6 / (level + 1);  // Adjust offset for spacing
-    generateTree({ x: position.x - offset, y: position.y - 5, z: position.z }, level + 1, Math.floor(n / b), a, b, fn, gn, depth, node);
-    generateTree({ x: position.x + offset, y: position.y - 5, z: position.z }, level + 1, Math.floor(n / b), a, b, fn, gn, depth, node);
+    const offset = 2 / (level + 1); // Adjust offset for spacing
+    generateTree({ x: position.x - offset, y: position.y - 1, z: position.z }, level + 1, Math.floor(n / b), a, b, fn, gn, depth);
+    generateTree({ x: position.x + offset, y: position.y - 1, z: position.z }, level + 1, Math.floor(n / b), a, b, fn, gn, depth);
 }
 
 // Function to calculate T(n) recursively
@@ -1015,7 +940,7 @@ function calculateRecurrence(n, level, a, b, fn, gn, depth) {
 generateTree({ x: 0, y: 0, z: 0 }, 0, n, a, b, fn, gn, depth);
 
 // Set camera position
-camera.position.z = 15;
+camera.position.z = 10;
 
 // Render function
 function animate() {
@@ -1023,4 +948,3 @@ function animate() {
     renderer.render(scene, camera);
 }
 animate();
-
