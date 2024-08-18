@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,33 +176,62 @@
             const container = document.getElementById('treeContainer').querySelector('.tree');
             container.innerHTML = ''; // Clear any previous tree
 
-            const terms = [];
-            let currentValue = n;
+            const valueMap = new Map(); // To store computed values
 
-            // Generate terms based on T(n-x) + y
-            while (currentValue >= a0) {
-                terms.push(currentValue);
-                currentValue -= x;
+            function computeValue(n) {
+                if (n < a0) return 0;
+                if (valueMap.has(n)) return valueMap.get(n);
+
+                const value = computeValue(n - x) + y;
+                valueMap.set(n, value);
+                return value;
             }
 
-            // Display the tree
-            terms.forEach((term, index) => {
+            function createNode(value, calculatedValue) {
                 const node = document.createElement('div');
                 node.classList.add('node');
-                node.textContent = `T(${term})`;
-                container.appendChild(node);
+                node.textContent = `T(${value}) = ${calculatedValue}`;
+                return node;
+            }
 
-                if (index < terms.length - 1) {
-                    const branch = document.createElement('div');
-                    branch.classList.add('branch');
+            function createBranch(parent, child) {
+                const branchContainer = document.createElement('div');
+                branchContainer.classList.add('branch');
 
-                    const line = document.createElement('div');
-                    line.classList.add('line');
-                    branch.appendChild(line);
+                if (child) {
+                    const horizontalContainer = document.createElement('div');
+                    horizontalContainer.classList.add('branch-container');
 
-                    container.appendChild(branch);
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.classList.add('horizontal-line');
+
+                    const verticalLine = document.createElement('div');
+                    verticalLine.classList.add('vertical-line');
+
+                    horizontalContainer.appendChild(child);
+                    branchContainer.appendChild(parent);
+                    branchContainer.appendChild(verticalLine);
+                    branchContainer.appendChild(horizontalLine);
+                    branchContainer.appendChild(horizontalContainer);
+                } else {
+                    branchContainer.appendChild(parent);
                 }
-            });
+
+                return branchContainer;
+            }
+
+            function buildTree(value) {
+                if (value < a0) return null;
+
+                const calculatedValue = computeValue(value);
+                const node = createNode(value, calculatedValue);
+                const child = buildTree(value - x);
+                
+                return createBranch(node, child);
+            }
+
+            const root = buildTree(n);
+            container.appendChild(root);
         }
 
         function generateRecurrenceTree2(n, x, y, a0) {
@@ -270,3 +300,5 @@
     </script>
 </body>
 </html>
+ 
+ 
