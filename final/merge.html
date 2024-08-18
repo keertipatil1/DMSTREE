@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -238,10 +237,26 @@
             const container = document.getElementById('treeContainer').querySelector('.tree');
             container.innerHTML = ''; // Clear any previous tree
 
+            const valuesCache = {};
+
+            function calculateValue(n) {
+                if (n in valuesCache) return valuesCache[n];
+
+                if (n <= a0) {
+                    valuesCache[n] = a0;
+                    return a0;
+                }
+
+                const leftValue = calculateValue(n - x);
+                const rightValue = calculateValue(n - y);
+                valuesCache[n] = leftValue + rightValue;
+                return valuesCache[n];
+            }
+
             function createNode(value) {
                 const node = document.createElement('div');
                 node.classList.add('node');
-                node.textContent = `T(${value})`;
+                node.textContent = `T(${value}): ${calculateValue(value)}`;
                 return node;
             }
 
@@ -285,13 +300,13 @@
             }
 
             function buildTree(value) {
-                if (value < a0) return null;
+                if (value <= a0) return createNode(value);
 
                 const node = createNode(value);
-                const leftBranch = buildTree(value - x);
-                const rightBranch = buildTree(value - y);
+                const leftChild = buildTree(value - x);
+                const rightChild = buildTree(value - y);
 
-                return createBranch(node, leftBranch, rightBranch);
+                return createBranch(node, leftChild, rightChild);
             }
 
             const root = buildTree(n);
@@ -300,5 +315,3 @@
     </script>
 </body>
 </html>
- 
- 
