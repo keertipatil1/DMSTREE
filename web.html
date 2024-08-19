@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recurrence Relations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #4caf50;
+        }
+        .intro {
+            margin-bottom: 40px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4caf50;
+            color: white;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .generate-button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .generate-button:hover {
+            background-color: #45a049;
+        }
+        img {
+            display: block;          /* Makes the image a block-level element */
+            margin: 0 auto;          /* Automatically adjusts the margins to center the image */
+            max-width: 35%;          /* Adjust the percentage to scale the image */
+            height: auto;            /* Maintains the aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Recurrence Relations</h1>
+    </header>
+
+    <nav>
+        <a href="#basics">Basics</a>
+        <a href="#introduction">Introduction</a>
+        <a href="#homogeneous">Homogeneous Recurrence Relations</a>
+        <a href="#non-homogeneous">Non-Homogeneous Recurrence Relations</a>
+        <a href="#generator">Tree Generator</a>
+    </nav>
+
+    <section id="basics">
+        <div class="content">
+            <h2>Basics</h2>
+            <p>
+                A recurrence relation is a functional relation between the independent variable x, dependent variable f(x) and the differences of various order of f(x). A recurrence relation is also called a difference equation, and we will use these two terms interchangeably.
+            </p>
+            <p>
+                <strong>Example 1:</strong> The equation f(x + 3h) + 3f(x + 2h) + 6f(x + h) + 9f(x) = 0 is a recurrence relation. It can also be written as:
+                <br><br>
+                a<sub>r+3</sub> + 3a<sub>r+2</sub> + 6a<sub>r+1</sub> + 9a<sub>r</sub> = 0
+                <br>
+                y<sub>k+3</sub> + 3y<sub>k+2</sub> + 6y<sub>k+1</sub> + 9y<sub>k</sub> = 0
+            </p>
+            <p>
+                <strong>Example 2:</strong> The Fibonacci sequence is defined by the recurrence relation a<sub>r</sub> = a<sub>r-2</sub> + a<sub>r-1</sub>, r ≥ 2, with the initial conditions a<sub>0</sub> = 1 and a<sub>1</sub> = 1.
+            </p>
+            <h3>Order of the Recurrence Relation:</h3>
+            <p>
+                The order of the recurrence relation or difference equation is defined to be the difference between the highest and lowest subscripts of f(x) or a<sub>r</sub> = y<sub>k</sub>.
+            </p>
+            <p>
+                <strong>Example 1:</strong> The equation 13a<sub>r</sub> + 20a<sub>r-1</sub> = 0 is a first order recurrence relation.
+            </p>
+            <p>
+                <strong>Example 2:</strong> The equation 8f(x) + 4f(x + 1) + 8f(x + 2) = k(x)
+            </p>
+            <h3>Degree of the Difference Equation:</h3>
+            <p>
+                The degree of a difference equation is defined to be the highest power of f(x) or a<sub>r</sub> = y<sub>k</sub>.
+            </p>
+            <p>
+                <strong>Example 1:</strong> The equation y<sup>3</sup><sub>k+3</sub> + 2y<sup>2</sup><sub>k+2</sub> + 2y<sub>k+1</sub> = 0 has the degree 3, as the highest power of y<sub>k</sub> is 3.
+            </p>
+            <p>
+                <strong>Example 2:</strong> The equation a<sup>4</sup><sub>r</sub> + 3a<sup>3</sup><sub>r-1</sub> + 6a<sup>2</sup><sub>r-2</sub> + 4a<sub>r-3</sub> = 0 has the degree 4, as the highest power of a<sub>r</sub> is 4.
+            </p>
+            <p>
+                <strong>Example 3:</strong> The equation y<sub>k+3</sub> + 2y<sub>k+2</sub> + 4y<sub>k+1</sub> + 2y<sub>k</sub> = k(x) has the degree 1, because the highest power of y<sub>k</sub> is 1 and its order is 3.
+            </p>
+            <p>
+                <strong>Example 4:</strong> The equation f(x+2h) - 4f(x+h) + 2f(x) = 0 has the degree 1 and its order is 2.
+            </p>
+        </div>
+    </section>
+
+    <section id="introduction">
+        <div class="content">
+            <h2>Introduction</h2>
+            <p class="intro">
+                A recurrence relation is a mathematical expression that defines a sequence in terms of its previous terms.
+                In the context of algorithmic analysis, it is often used to model the time complexity of recursive algorithms.
+                <br><br>
+                General form of a Recurrence Relation: 
+                <br> <strong> f<sub>n</sub> = f(a<sub>n-1</sub>​, a<sub>n-2</sub>​,…., a<sub>n-k</sub>​) </strong>
+                <br><br>
+                where f is a function that defines the relationship between the current term and the previous terms.           
+                More precisely, in the case where only the immediately preceding element is involved, a recurrence relation 
+                has the form:
+            </p>
+            <p style="text-align: center;">
+                <strong>u<sub>n</sub> = φ(n, u<sub>n-1</sub>) for n &gt; 0</strong>
+            </p>
+            <p>
+                where φ: ℕ × X → X is a function, where X is a set to which the elements of a sequence must belong. 
+                For any u<sub>0</sub> ∈ X, this defines a unique sequence with u<sub>0</sub> as its first element, called the initial value.
+            </p>
+            <p>
+                This defines a recurrence relation of first order. A recurrence relation of order k has the form:
+            </p>
+            <p style="text-align: center;">
+                <strong>u<sub>n</sub> = φ(n, u<sub>n-1</sub>, u<sub>n-2</sub>, ..., u<sub>n-k</sub>) for n ≥ k</strong>
+            </p>
+            <p>
+                where φ: ℕ × X<sup>k</sup> → X is a function that involves k consecutive elements of the sequence. 
+                In this case, k initial values are needed for defining a sequence.
+            </p>
+            <p>
+                Recurrence relations can be classified into different types, such as homogeneous and non-homogeneous, each with its unique characteristics and applications.
+                Understanding these concepts is crucial for dealing with recursive structures and dynamic programming.
+            </p>
+            <img src="p1.png" alt="Working of Recurrence Relations" class="logo">
+        </div>
+    </section>
+
+    <section id="homogeneous">
+        <div class="content">
+            <h2>Homogeneous Recurrence Relations</h2>
+            A homogeneous recurrence relation is a relation in which each term is a function of the preceding terms.
+            It follows the form:
+            <p><strong>T(n) = a1 * T(n-1) + a2 * T(n-2) + ... + ak * T(n-k)</strong></p>
+            <br>
+            These relations often appear in problems involving recursive structures, such as computing Fibonacci numbers.
+            The main characteristic of homogeneous relations is that they do not have any additional independent terms.
+            <br>
+        </div>
+    </section>
+
+    <section id="non-homogeneous">
+        <div class="content">
+            <h2>Non-Homogeneous Recurrence Relations</h2>
+            <p class="intro">
+                In contrast, a non-homogeneous recurrence relation includes an additional independent function of n,
+                making the relation of the form:
+            </p>
+            <p style="text-align: center;">
+                <strong>T(n) = a<sub>1</sub> * T(n-1) + a<sub>2</sub> * T(n-2) + ... + a<sub>k</sub> * T(n-k) + f(n)</strong>
+            </p>
+            <p>
+                A non-homogeneous recurrence relation has an associated homogeneous recurrence relation where the function f(n) is zero. The general solution of the non-homogeneous recurrence relation is the sum of two parts:
+            </p>
+            <p style="text-align: center;">
+                <strong>a<sub>n</sub> = a<sub>h</sub> + a<sub>t</sub></strong>
+            </p>
+            <p>
+                where a<sub>h</sub> is the solution of the associated homogeneous recurrence relation, and a<sub>t</sub> is a particular solution to the non-homogeneous recurrence relation.
+            </p>
+            <p>
+                To find the particular solution, we consider an appropriate trial solution. For example, if the function f(n) is a polynomial or exponential function, we select a trial solution that matches the form of f(n).
+            </p>
+            <p>
+                Let f(n) = c * x<sup>n</sup> and let x<sup>2</sup> = Ax + B be the characteristic equation of the associated homogeneous recurrence relation. Let x<sub>1</sub> and x<sub>2</sub> be the roots of this equation.
+            </p>
+            <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px;">
+                <ul>
+                    <li>If x ≠ x<sub>1</sub> and x ≠ x<sub>2</sub>, then a<sub>t</sub> = Ax<sup>n</sup></li>
+                    <li>If x = x<sub>1</sub>, x ≠ x<sub>2</sub>, then a<sub>t</sub> = Anx<sup>n</sup></li>
+                    <li>If x = x<sub>1</sub> = x<sub>2</sub>, then a<sub>t</sub> = An<sup>2</sup>x<sup>n</sup></li>
+                </ul>
+            </div>
+            <p>
+                These cases help determine the form of the particular solution depending on the nature of the roots of the characteristic equation.
+            </p>
+        </div>
+    </section>
+
+    <section id="generator">
+        <div class="content">
+            <h2>Recurrence Relation Tree Generator</h2>
+            <p>
+                Use our recurrence relation tree generator to visualize the structure of different recurrence relations.
+                Choose your relation, input your parameters, and generate the corresponding tree!
+                <br> <strong> Relations Specified Here: </strong>
+                <br> 1. T<sub>n</sub> = T<sub>n-x</sub>+ y
+                <br> 2. T<sub>n</sub> = T<sub>n-x</sub> + T<sub>n-y</sub>
+            </p>
+            <div class="button-container">
+                <a href="final.html" class="generate-button">Generate Tree</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Recurrence Relations Project. All rights reserved.</p>
+    </footer>
+</body>
+</html>

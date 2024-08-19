@@ -243,7 +243,7 @@
             function calculateValue(n) {
                 if (n in valuesCache) return valuesCache[n];
 
-                if (n <= a0) {
+                if (n < a0) {
                     valuesCache[n] = a0;
                     return a0;
                 }
@@ -302,7 +302,7 @@
             }
 
             function buildTree(n) {
-                if (n <= a0) return null;
+                if (n < a0 - 1) return null;
 
                 const node = createNode(n);
                 const leftBranch = buildTree(n - x);
