@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin-bottom: 15px;
+}
+header {
+    background-color: #4caf50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+section {
+    padding: 20px;
+}
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+h2 {
+    color: #4caf50;
+}
+.intro {
+    margin-bottom: 40px;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4caf50;
+    color: white;
+}
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+.generate-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+.generate-button:hover {
+    background-color: #45a049;
+}
+img {
+    display: block;          /* Makes the image a block-level element */
+    margin: 0 auto;          /* Automatically adjusts the margins to center the image */
+    max-width: 35%;          /* Adjust the percentage to scale the image */
+    height: auto;            /* Maintains the aspect ratio */
+}

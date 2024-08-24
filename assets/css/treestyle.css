@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0 50px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    width: 300px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input, select {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.tree-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+}
+
+.node {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 10px 0;
+}
+
+.horizontal-container {
+    display: flex;
+    justify-content: center; /* Centering child nodes */
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.horizontal-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+
+.vertical-line {
+    width: 2px;
+    height: 20px;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 1px);
+}
+
+.branch-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
