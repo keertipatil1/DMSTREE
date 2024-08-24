@@ -4,82 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recurrence Relations</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        header {
-            background-color: #4caf50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-        }
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h2 {
-            color: #4caf50;
-        }
-        .intro {
-            margin-bottom: 40px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #4caf50;
-            color: white;
-        }
-        .button-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .generate-button {
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-        }
-        .generate-button:hover {
-            background-color: #45a049;
-        }
-        img {
-            display: block;          /* Makes the image a block-level element */
-            margin: 0 auto;          /* Automatically adjusts the margins to center the image */
-            max-width: 35%;          /* Adjust the percentage to scale the image */
-            height: auto;            /* Maintains the aspect ratio */
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/mainstyle.css" />
 </head>
 <body>
     <header>
@@ -98,7 +23,7 @@
         <div class="content">
             <h2>Basics</h2>
             <p>
-                A recurrence relation is a functional relation between the independent variable x, dependent variable f(x) and the differences of various order of f(x). A recurrence relation is also called a difference equation, and we will use these two terms interchangeably.
+                A recurrence relation is a functional relation between the independent variable x, dependent variable f(x), and the differences of various orders of f(x). A recurrence relation is also called a difference equation, and we will use these two terms interchangeably.
             </p>
             <p>
                 <strong>Example 1:</strong> The equation f(x + 3h) + 3f(x + 2h) + 6f(x + h) + 9f(x) = 0 is a recurrence relation. It can also be written as:
@@ -147,7 +72,7 @@
                 In the context of algorithmic analysis, it is often used to model the time complexity of recursive algorithms.
                 <br><br>
                 General form of a Recurrence Relation: 
-                <br> <strong> f<sub>n</sub> = f(a<sub>n-1</sub>​, a<sub>n-2</sub>​,…., a<sub>n-k</sub>​) </strong>
+                <br> <strong> f<sub>n</sub> = f(a<sub>n-1</sub>, a<sub>n-2</sub>, …., a<sub>n-k</sub>) </strong>
                 <br><br>
                 where f is a function that defines the relationship between the current term and the previous terms.           
                 More precisely, in the case where only the immediately preceding element is involved, a recurrence relation 
@@ -174,7 +99,7 @@
                 Recurrence relations can be classified into different types, such as homogeneous and non-homogeneous, each with its unique characteristics and applications.
                 Understanding these concepts is crucial for dealing with recursive structures and dynamic programming.
             </p>
-            <img src="p1.png" alt="Working of Recurrence Relations" class="logo">
+            <img src="./assets/images/p1.png" alt="Working of Recurrence Relations" class="logo">
         </div>
     </section>
 
@@ -183,7 +108,7 @@
             <h2>Homogeneous Recurrence Relations</h2>
             A homogeneous recurrence relation is a relation in which each term is a function of the preceding terms.
             It follows the form:
-            <p><strong>T(n) = a1 * T(n-1) + a2 * T(n-2) + ... + ak * T(n-k)</strong></p>
+            <p><strong>T(n) = a<sub>1</sub> * T(n-1) + a<sub>2</sub> * T(n-2) + ... + a<sub>k</sub> * T(n-k)</strong></p>
             <br>
             These relations often appear in problems involving recursive structures, such as computing Fibonacci numbers.
             The main characteristic of homogeneous relations is that they do not have any additional independent terms.
@@ -240,13 +165,14 @@
                 <br> 2. T<sub>n</sub> = T<sub>n-x</sub> + T<sub>n-y</sub>
             </p>
             <div class="button-container">
-                <a href="final.html" class="generate-button">Generate Tree</a>
+                <a href="treeGenerator.html" class="generate-button">Generate Tree</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Recurrence Relations Project. All rights reserved.</p>
-    </footer>
+    <!-- <footer>
+        <p>&copy; 2024 Recurrence Relations. All rights reserved.</p>
+    </footer> -->
+
 </body>
 </html>
